@@ -391,3 +391,59 @@ Toleh=false;
 break;
 
 //Akhir Nurul
+case GLUT_KEY_F5: //menghentikan pergerakan menoleh kiri dan kanan
+if(Tolehpress == false)
+{
+if(speed1==true||speed2==true||speed3==true||speed4==true)
+Toleh=true;
+Tolehpress=true;
+}
+else
+{
+if(speed1==true||speed2==true||speed3==true||speed4==true)
+Toleh=false;
+Tolehpress=false;
+}
+break;
+case GLUT_KEY_RIGHT://mengatur tolehan kipas ke kanan secara bertahap
+Rheadplus++;
+Turn++;
+break;
+case GLUT_KEY_LEFT://mengatur tolehan kipas ke kiri secara bertahap
+Rheadplus--;
+Turn--;
+break;
+case GLUT_KEY_PAGE_UP:// mengatur kipas ke posisi atas
+Anggukplus--;
+break;
+case GLUT_KEY_PAGE_DOWN: // mengatur kipas ke posisi bawah
+Anggukplus++;
+break;
+}
+}
+
+// interaksi melalui mouse
+    void Mouse_s(int button, int state, int x, int y)
+    {
+        if (state==0 && button==0)
+        All_plus--;
+        if (state==0 && button==2)
+        All_plus++;
+    }
+ int main(int argc,char **argv)
+    {
+        glutInit(&argc,argv);
+        glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB|GLUT_DEPTH);
+        glutInitWindowSize(screen_width,screen_height);
+        glutInitWindowPosition(0,0);
+        glutCreateWindow("KAMPRET 32");
+        glutDisplayFunc(display);
+        glutIdleFunc(display);
+        glutReshapeFunc(resize);
+        glutSpecialFunc(keyboard_s);
+        glutMouseFunc(Mouse_s);
+        init();
+        glutMainLoop();
+        return(0);
+    }
+
